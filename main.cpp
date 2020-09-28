@@ -19,10 +19,28 @@ int main(int argc, char **argv){
     Dispenser antidote("Antidote", 10, 35);
     Dispenser stocks[totalItems] = {healingPotion, manaPotion, fullRestore, revivePotion, elixir, antidote};
     cout << "Welcome Adventurer!" << endl << "How may I serve your today?";
-    
-    for(int i = 0; i < totalItems; i++){
-        cout << i+1 << ". " << stocks[i].getItemName() << ": $" << stocks[i].getItemPrice() << " (" << stocks[i].getItemQuantity() << ")" << endl;
+    int itemSelection = 0;
+    while (true){
+        cout << endl;
+        for(int i = 0; i < totalItems; i++){
+            cout << i+1 << ". " << stocks[i].getItemName() << ": $" << stocks[i].getItemPrice() << " (" << stocks[i].getItemQuantity() << ")" << endl;
+        }
+        cout << "Make your selection: ";
+        cin >> itemSelection;
+        itemSelection--;
+        
+        cout << "You have selected: " << stocks[itemSelection].getItemName() << "." << endl;
+        double itemCost = stocks[itemSelection].getItemPrice();
+        double insertedAmount = 0;
+        while (insertedAmount < itemCost){
+            cout << "Insert $" << itemCost-insertedAmount << ": ";
+            double newAmount;
+            cin >> newAmount;
+            insertedAmount += newAmount;
+        }
+        stocks[itemSelection].dispense();
+        reg.printCash();
+        itemSelection = 0;
     }
-    
-    reg.printCash();
+
 }
