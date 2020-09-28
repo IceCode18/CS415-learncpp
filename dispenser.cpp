@@ -14,3 +14,12 @@ Dispenser::Dispenser(){}
 Dispenser::~Dispenser(){
     cout << "Dispenser "<< itemName <<" is emptied." << endl;
 }
+string Dispenser::getItemName(){
+    return itemName;
+}
+double Dispenser::getItemPrice(){
+    return itemPrice;
+}
+int Dispenser::getItemQuantity(){
+    return itemQuantity;
+}
