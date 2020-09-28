@@ -39,6 +39,7 @@ int main(int argc, char **argv){
             insertedAmount += newAmount;
         }
         stocks[itemSelection].dispense();
+        reg.collect(itemCost, insertedAmount);
         reg.printCash();
         itemSelection = 0;
     }
