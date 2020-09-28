@@ -25,22 +25,33 @@ int main(int argc, char **argv){
         for(int i = 0; i < totalItems; i++){
             cout << i+1 << ". " << stocks[i].getItemName() << ": $" << stocks[i].getItemPrice() << " (" << stocks[i].getItemQuantity() << ")" << endl;
         }
-        cout << "Make your selection: ";
+        cout << "Make your selection (use zero or a negative number to exit): ";
         cin >> itemSelection;
         itemSelection--;
-        
-        cout << "You have selected: " << stocks[itemSelection].getItemName() << "." << endl;
-        double itemCost = stocks[itemSelection].getItemPrice();
-        double insertedAmount = 0;
-        while (insertedAmount < itemCost){
-            cout << "Insert $" << itemCost-insertedAmount << ": ";
-            double newAmount;
-            cin >> newAmount;
-            insertedAmount += newAmount;
+        if(itemSelection < 0){
+            cout << endl << "Good luck on your quest, Adventurer!" << endl;
+            break;
         }
-        stocks[itemSelection].dispense();
-        reg.collect(itemCost, insertedAmount);
-        reg.printCash();
+        else if(itemSelection >= totalItems){
+            cout << "We only sell " << totalItems << " items, Adventurer." << endl;
+        }
+        else if(stocks[itemSelection].getItemQuantity() < 1){
+            cout << "I'm sorry, Adventurer! That item is currently out of stock." << endl;
+        }
+        else{
+            cout << "You have selected: " << stocks[itemSelection].getItemName() << "." << endl;
+            double itemCost = stocks[itemSelection].getItemPrice();
+            double insertedAmount = 0;
+            while (insertedAmount < itemCost){
+                cout << "Insert $" << itemCost-insertedAmount << ": ";
+                double newAmount;
+                cin >> newAmount;
+                insertedAmount += newAmount;
+            }
+            stocks[itemSelection].dispense();
+            reg.collect(itemCost, insertedAmount);
+            reg.printCash();
+        }  
         itemSelection = 0;
     }
 
