@@ -23,3 +23,7 @@ double Dispenser::getItemPrice(){
 int Dispenser::getItemQuantity(){
     return itemQuantity;
 }
+void Dispenser::dispense(){
+    itemQuantity--;
+    cout << itemName << " dispensed." << endl;
+}
