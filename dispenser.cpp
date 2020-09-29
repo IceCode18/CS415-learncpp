@@ -25,5 +25,7 @@ int Dispenser::getItemQuantity(){
 }
 void Dispenser::dispense(){
     itemQuantity--;
-    cout << itemName << " dispensed." << endl;
+    cout <<"[======]" << endl;
+    cout << "[===] " << itemName << " dispensed." << endl;
+    cout <<"[======]" << endl;
 }
